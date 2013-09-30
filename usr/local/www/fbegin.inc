@@ -252,9 +252,196 @@ if(! $g['disablehelpmenu']) {
 }
 
 ?>
+<div id="wrapper" style="margin-top:60px">
+<div id="header" class="navbar navbar-inverse navbar-fixed-top">
+       <!-- BEGIN TOP NAVIGATION BAR -->
+       <div class="navbar-inner">
+           <div class="container-fluid">
+               <!--BEGIN SIDEBAR TOGGLE-->
+               <div class="sidebar-toggle-box hidden-phone">
+                   <div class="icon-reorder"></div>
+               </div>
+               <!--END SIDEBAR TOGGLE-->
+               <!-- BEGIN LOGO -->
+               <a class="brand" href="/index.php">
+                   <img src="/themes/<?= $g['theme']; ?>/img/logo.png" alt="Metro Lab">
+               </a>
+               <!-- END LOGO -->
+               <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+               <a class="btn btn-navbar collapsed" id="main_menu_trigger" data-toggle="collapse" data-target=".nav-collapse">
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                   <span class="arrow"></span>
+               </a>
+               <!-- END RESPONSIVE MENU TOGGLER -->
+               <div id="top_menu" class="nav notify-row">
+                   <!-- BEGIN NOTIFICATION -->
+                   <ul class="nav top-menu">
+                       <!-- BEGIN SETTINGS -->
+                       
+                       <!-- END INBOX DROPDOWN -->
+                     
+                       <!-- BEGIN NOTIFICATION DROPDOWN --> 
+                       <li class="dropdown" id="header_notification_bar">
+                          <a class="dropdown-toggle" data-toggle="dropdown">
 
-<div id="wrapper">
-	<div id="header">
+ 	                    <i class="icon-bell-alt"></i>
+                               <span class="badge badge-warning"></span>
+                           </a>
+                           <ul class="dropdown-menu extended notification>">
+                               <li>
+
+                                   <p><?php $found_notices = are_notices_pending();?></p>
+                               </li>
+                            <li>
+                                   <a href="#">
+                                       <span class="label label-important"><i class="icon-bolt"></i></span>
+                                       <?php
+											if($need_alert_display == true) {
+                                       echo $display_text;
+                                       }
+                                       ?>
+                                   </a>
+                               </li>
+									</ul>
+                       </li>
+                       <!-- END NOTIFICATION DROPDOWN -->
+
+               </div>
+               <!-- END  NOTIFICATION -->
+               <div class="top-nav ">
+                   <ul class="nav pull-right top-menu">
+                     <!-- BEGIN USER LOGIN DROPDOWN -->
+                       <li class="dropdown">
+                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			       <i class="icon-user"></i>
+                               <span class="username">Admin</span>
+                               <b class="caret"></b>
+                           </a>
+                           <ul class="dropdown-menu extended logout">
+                               <li><a href="../system_usermanager.php"><i class="icon-cog"></i> Settings</a></li>
+                               <li><a href="../index.php?logout"><i class="icon-key"></i> Log Out</a></li>
+                           </ul>
+                       </li>
+                       <!-- END USER LOGIN DROPDOWN -->
+                   </ul>
+                   <!-- END TOP NAVIGATION MENU -->
+               </div>
+           </div>
+       </div>
+       <!-- END TOP NAVIGATION BAR -->
+   </div>
+
+<!-- BEGIN SIDEBAR -->
+      <div class="sidebar-scroll">
+        <div id="sidebar" class="nav-collapse collapse">
+
+         <!-- BEGIN SIDEBAR MENU -->
+          <ul class="sidebar-menu">
+              <li class="sub-menu active">
+                  <a class="" href="index.php">
+                      <i class="icon-dashboard"></i>
+                      <span>Dashboard</span>
+                  </a>
+              </li>
+              <li class="sub-menu">
+                  <a href="javascript:;" class="">
+                      <i class="icon-book"></i>
+                      <span>System</span>
+                      <span class="arrow"></span>
+                  </a>
+                  <ul class="sub">
+                  <?php
+			output_menu($system_menu);
+		  ?>
+              </ul>
+              </li>
+              <li class="sub-menu">
+                  <a href="javascript:;" class="">
+                      <i class="icon-cogs"></i>
+                      <span>Interfaces</span>
+                      <span class="arrow"></span>
+                  </a>
+                  <ul class="sub">
+                  <?php
+			output_menu($interfaces_menu);
+	 	  ?>
+                  </ul>
+              </li>
+              <li class="sub-menu">
+                  <a href="javascript:;" class="">
+                      <i class="icon-tasks"></i>
+                      <span>Firewall</span>
+                      <span class="arrow"></span>
+                  </a>
+                  <ul class="sub">
+                  <?php
+			output_menu($firewall_menu);
+	 	  ?>
+                  </ul>
+              </li>
+              <li class="sub-menu">
+                  <a href="javascript:;" class="">
+                      <i class="icon-th"></i>
+                      <span>Services</span>
+                      <span class="arrow"></span>
+                  </a>
+                  <ul class="sub">
+                  <?php
+			output_menu($services_menu);
+		  ?>
+                  </ul>
+              </li>
+
+
+              <li class="sub-menu">
+                  <a href="javascript:;" class="">
+                      <i class="icon-fire"></i>
+                      <span>Status</span>
+                      <span class="arrow"></span>
+                  </a>
+                  <ul class="sub">
+                  <?php
+			output_menu($status_menu);
+		  ?>
+                  </ul>
+              </li>
+              <li class="sub-menu">
+                  <a href="javascript:;" class="">
+                      <i class="icon-file-alt"></i>
+                      <span>Diagnostics</span>
+                      <span class="arrow"></span>
+                  </a>
+                  <ul class="sub">
+                  <?php
+			output_menu($diagnostics_menu);
+	 	 ?>
+                  </ul>
+              </li>
+              <li class="sub-menu">
+                  <a href="javascript:;" class="">
+                      <i class="icon-question"></i>
+                      <span>Help</span>
+                      <span class="arrow"></span>
+                  </a>
+                  <ul class="sub">
+		  <?php
+			output_menu($help_menu);
+	  	  ?>
+                  </ul>
+              </li>
+              <li>
+                  <a class="" href="index.php?logout">
+                    <i class="icon-user"></i>
+                    <span>Login Page</span>
+                  </a>
+              </li>
+          </ul>
+         <!-- END SIDEBAR MENU -->
+         </div>
+      </div>
+	<!-- <div id="header">
 		<div id="header-left"><a href="/index.php" id="status-link"><img src="/themes/<?= $g['theme']; ?>/images/transparent.gif" border="0" alt="transparent" /></a></div>
 		<div id="header-right">
 			<div class="container">
@@ -268,83 +455,11 @@ if(! $g['disablehelpmenu']) {
 		</div>
 	</div> <!-- Header DIV -->
 	<div id="content">
-		<div id="left">
-			<div id="navigation" style="z-index:1000;">
-				<ul id="menu">
-					<li class="firstdrop">
-						<div><?php echo gettext("System"); ?></div>
-						<ul class="subdrop">
-						<?php
-							output_menu($system_menu);
-						?>
-						</ul>
-					</li>
-					<li class="drop">
-						<div><?php echo gettext("Interfaces"); ?></div>
-						<ul class="subdrop">
-						<?php
-							output_menu($interfaces_menu);
-						?>
-						</ul>
-					</li>
-					<li class="drop">
-						<div><?php echo gettext("Firewall"); ?></div>
-						<ul class="subdrop">
-						<?php
-							output_menu($firewall_menu);
-						?>
-						</ul>
-					</li>
-					<li class="drop">
-						<div><?php echo gettext("Services"); ?></div>
-						<ul class="subdrop">
-						<?php
-							output_menu($services_menu);
-						?>
-						</ul>
-					</li>
-					<li class="drop">
-						<div><?php echo gettext("VPN"); ?></div>
-						<ul class="subdrop">
-						<?php
-							output_menu($vpn_menu);
-						?>
-						</ul>
-					</li>
-					<li class="drop">
-						<div><?php echo gettext("Status"); ?></div>
-						<ul class="subdrop">
-						<?php
-							output_menu($status_menu);
-						?>
-						</ul>
-					</li>
-					<li class="drop">
-						<div><?php echo gettext("Diagnostics"); ?></div>
-						<ul id="diag" class="subdrop">
-						<?php
-							output_menu($diagnostics_menu);
-						?>
-						</ul>
-					</li>
-					<?php if(! $g['disablehelpmenu']): ?>
-					<li class="lastdrop">
-						<div><?php echo gettext("Help"); ?></div>
-						<ul id="help" class="subdrop">
-						<?php
-							output_menu($help_menu, "_blank");
-						?>
-						</ul>
-					</li>
-					<?php endif; ?>
-				</ul>
-			</div>
-
-		</div> <!-- Left DIV -->
-
+		<!-- BEGIN RIGHT CONTAINER -->
 		<div id="right">
 
 <?php
+
 echo "\t<script type=\"text/javascript\" src=\"javascript/domTT/domLib.js\"></script>\n";
 echo "\t<script type=\"text/javascript\" src=\"javascript/domTT/domTT.js\"></script>\n";
 echo "\t<script type=\"text/javascript\" src=\"javascript/domTT/behaviour.js\"></script>\n";
@@ -359,17 +474,6 @@ echo "\t<script type=\"text/javascript\" src=\"javascript/domTT/fadomatic.js\"><
 			$display_text = print_notices($notices) . "<br />";
 		}
 	}
-	if($need_alert_display == true) {
-                echo "<div style=\"background-color:#000000\" id=\"roundalert\">";
-                echo "<table summary=\"round alert\">";
-		echo "<tr><td><font color=\"#ffffff\">";
-		echo "&nbsp;&nbsp;<img align=\"middle\" src=\"/top_notification.gif\" alt=\"notification\" />&nbsp;&nbsp;&nbsp;";
-		echo $display_text;
-		echo "</font></td>";
-		echo "</tr>";
-		echo "</table>";
-		echo "</div>";
-	}
 
 function add_to_menu($url, $name) {
 	if (isAllowedPage($url))
@@ -379,7 +483,32 @@ function add_to_menu($url, $name) {
 ?>
 
 <div>
-<span class="pgtitle"><a href="<?= htmlentities($_SERVER['REQUEST_URI']) ?>"><?=genhtmltitle($pgtitle);?></a></span>
+<!-- <span class="pgtitle"><a href="<?= htmlentities($_SERVER['REQUEST_URI']) ?>"><?=genhtmltitle($pgtitle);?></a></span>-->
+<div class="row-fluid">
+               <div class="span12">
+                   <!-- BEGIN THEME CUSTOMIZER-->
+                   <div id="theme-change" class="hidden-phone">
+                       <i class="icon-cogs"></i>
+                        <span class="settings">
+                            <span class="text">Theme Color:</span>
+                            <span class="colors">
+                                <span class="color-default" data-style="default"></span>
+                                <span class="color-green" data-style="green"></span>
+                                <span class="color-gray" data-style="gray"></span>
+                                <span class="color-purple" data-style="purple"></span>
+                                <span class="color-red" data-style="red"></span>
+                            </span>
+                        </span>
+                   </div>
+                   <!-- END THEME CUSTOMIZER-->
+                  <!-- BEGIN PAGE TITLE & BREADCRUMB>
+                   <!--<h3 class="page-title"><a href="<?= htmlentities($_SERVER['REQUEST_URI']) ?>"><?=genhtmltitle($pgtitle);?></a>
+                   </h3>-->
+                   <ul class="breadcrumb">
+                       <li>
+                           <a href="<?= htmlentities($_SERVER['REQUEST_URI']) ?>"><?=genhtmltitle($pgtitle);?></a>
+                       </li>
+
 <span style="float:right; margin: 0 0 20px 20px">
 <?php
 if (!$hide_service_status && !empty($shortcuts[$shortcut_section]['service'])) {
@@ -411,6 +540,12 @@ echo get_shortcut_log_link($shortcut_section, true);
 <a href="<?php echo $helpurl; ?>" title="<?php echo gettext("Help for items on this page"); ?>"><img style="vertical-align:middle" src="/themes/<?php echo $g['theme']; ?>/images/icons/icon_help.gif" border="0" alt="help" /></a>
 <?php endif; ?>
 </span>
+                   </ul>
+                   <!-- END PAGE TITLE & BREADCRUMB-->
+
+               </div>
+
+            </div>
 </div>
 <br />
 
