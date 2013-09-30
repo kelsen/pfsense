@@ -316,7 +316,11 @@ if(! $g['disablehelpmenu']) {
                        <li class="dropdown">
                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 			       <i class="icon-user"></i>
-                               <span class="username">Admin</span>
+                               <span class="username">
+				<?php
+                                echo $config['system']['hostname'] . "." . $config['system']['domain']; 
+				?>
+				</span>
                                <b class="caret"></b>
                            </a>
                            <ul class="dropdown-menu extended logout">
