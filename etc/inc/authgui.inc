@@ -235,11 +235,17 @@ $have_cookies = isset($_COOKIE["cookie_test"]);
 		<title><?=gettext("Login"); ?></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		<link rel="shortcut icon" href="/themes/<?= $g['theme'] ?>/images/icons/favicon.ico" />
-		<?php if (file_exists("{$g['www_path']}/themes/{$g['theme']}/login.css")): ?>
+		<!--<?php if (file_exists("{$g['www_path']}/themes/{$g['theme']}/login.css")): ?>
 		<link rel="stylesheet" type="text/css" href="/themes/<?= $g['theme'] ?>/login.css" media="all" />
 		<?php else: ?>
 		<link rel="stylesheet" type="text/css" href="/themes/<?= $g['theme'] ?>/all.css" media="all" />
-		<?php endif; ?>
+		<?php endif; ?>-->
+		<link href="/themes/<?= $g['theme'] ?>/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   		<link href="/themes/<?= $g['theme'] ?>/assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+   		<link href="/themes/<?= $g['theme'] ?>/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+   		<link href="/themes/<?= $g['theme'] ?>/css/style.css" rel="stylesheet">
+   		<link href="/themes/<?= $g['theme'] ?>/css/style-responsive.css" rel="stylesheet">
+   		<link href="/themes/<?= $g['theme'] ?>/css/style-default.css" rel="stylesheet" id="style_color">	
 		<script type="text/javascript">
 		//<![CDATA[
 			function page_load() {}
@@ -256,7 +262,14 @@ $have_cookies = isset($_COOKIE["cookie_test"]);
 		<script type="text/javascript" src="/themes/<?= $g['theme'] ?>/javascript/niftyjsCode.js"></script>
 	</head>
 	<body onload="page_load()">
-		<div id="login">
+		<div class="login-wrap">
+			<div class="lock-header">
+        		<!-- BEGIN LOGO -->
+        		<a class="center" id="logo" href="index.html">
+            		<img class="center" alt="logo" src="/themes/<?= $g['theme'] ?>/img/logo.png">
+        		</a>
+        		<!-- END LOGO -->
+    		</div>
 			<?php 
 				if(is_ipaddr($http_host) && !$local_ip && !isset($config['system']['webgui']['nohttpreferercheck'])) {
 					$nifty_background = "#999";
@@ -268,23 +281,25 @@ $have_cookies = isset($_COOKIE["cookie_test"]);
 				<h1>&nbsp;</h1>
 				<div id="inputerrors"><?=$_SESSION['Login_Error'];?></div>
 				<p>
-					<span style="text-align:left">
-						<?=gettext("Username:"); ?><br />
-						<input onclick="clearError();" onchange="clearError();" id="usernamefld" type="text" name="usernamefld" class="formfld user" tabindex="1" />
-					</span>
-				</p>
-				<p>
-					<br />
-					<span style="text-align:left">
-						<?=gettext("Password:"); ?> <br />
-						<input onclick="clearError();" onchange="clearError();" id="passwordfld" type="password" name="passwordfld" class="formfld pwd" tabindex="2" />
-					</span>
-				</p>
-				<p>
-					<br />
 					<span style="text-align:center; font-weight: normal ; font-style: italic">
 						<?=gettext("Enter username and password to login."); ?>
 					</span>
+				<div class="metro single-size red">
+            				<div class="locked">
+                			<i class="icon-lock"></i>
+                			<span>Login</span>
+            				</div>
+        			</div>
+				<div class="metro double-size green">
+				<div class="input-append lock-input">
+					<input onclick="clearError();" onchange="clearError();" id="usernamefld" type="text" name="usernamefld" placeholder="Username"/>
+                </div>
+		</div>
+				<div class="metro double-size yellow">
+				<div class="input-append lock-input">
+					<input onclick="clearError();" onchange="clearError();" id="passwordfld" type="password" name="passwordfld" placeholder="Password"/>
+                </div>
+				</div>
 
 					<?php if (!$have_cookies && isset($_POST['login'])): ?>
 					<br/><br/>
@@ -292,12 +307,37 @@ $have_cookies = isset($_COOKIE["cookie_test"]);
 						<?= gettext("Your browser must support cookies to login."); ?>
 					</span>
 					<?php endif; ?>
-				</p>        
-				<p>
-					<span style="text-align:center">
-						<input type="submit" name="login" class="formbtn" value="<?=gettext("Login"); ?>" tabindex="3" />
-					</span>
-				</p>
+					
+				<div class="metro single-size terques login">
+						<button type="submit" name="login" class="btn login-btn">
+                   			Login 
+                <i class=" icon-long-arrow-right"></i>
+                </button>		
+					</div>
+				<div class="metro double-size navy-blue ">
+            <a href="https://portal.pfsense.org" target="_blank" class="social-link">
+		<i class="icon-plus-sign-alt"></i>
+                <span>Premium Portal</span>
+            </a>
+        </div>
+        <div class="metro single-size deep-red">
+            <a href="http://forum.pfsense.org" class="social-link">
+                <i class="icon-comments"></i>
+                <span>pfSense Forum</span>
+            </a>
+        </div>
+        <div class="metro double-size blue">
+            <a href="http://www.pfsense.org" class="social-link">
+                <i class="icon-home"></i>
+                <span>Home Page</span>
+            </a>
+        </div>
+        <div class="metro single-size purple">
+            <a href="index.html" class="social-link">
+                <i class="icon-building"></i>
+                <span>Your Comp. Inc</span>
+            </a>
+        </div>	
 			</form>
 		</div>
 	</body>
