@@ -213,7 +213,7 @@ if ($_POST) {
 		</tr>
 		<?php endforeach; ?>
 		<tr>
-			<td colspan="5">
+			<td colspan="5" style="padding-top: 10px">
 			<input name="Submit" type="submit" class="formbtn" value="<?= gettext("Save"); ?>">
 			<input name="Reset"  type="reset"  class="formbtn" value="<?= gettext("Reset"); ?>">
 			</td>

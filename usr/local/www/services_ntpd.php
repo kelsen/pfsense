@@ -85,7 +85,7 @@ include("head.inc");
 <?php if ($input_errors) print_input_errors($input_errors); ?>
 <?php if ($savemsg) print_info_box($savemsg); ?>
 
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top: 36px">
 <tr><td><div id="mainarea">
 <table class="tabcont" width="100%" border="0" cellpadding="6" cellspacing="0">
 <tr>

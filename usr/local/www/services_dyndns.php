@@ -86,8 +86,7 @@ include("head.inc");
 		  <td width="15%" class="listhdrr"><?=gettext("Service");?></td>
 		  <td width="20%" class="listhdrr"><?=gettext("Hostname");?></td>
 		  <td width="20%" class="listhdrr"><?=gettext("Cached IP");?></td>
-		  <td width="50%" class="listhdr"><?=gettext("Description");?></td>
-		  <td width="10%" class="list"></td>
+		  <td width="37%" class="listhdr"><?=gettext("Description");?></td>
 		</tr>
 		<?php $i = 0; foreach ($a_dyndns as $dyndns): ?>
 		<tr ondblclick="document.location='services_dyndns_edit.php?id=<?=$i;?>'">
@@ -139,7 +138,6 @@ include("head.inc");
 		  <td class="listr">
 		  <?php
 			$filename = "{$g['conf_path']}/dyndns_{$dyndns['interface']}{$dyndns['type']}" . escapeshellarg($dyndns['host']) . "{$dyndns['id']}.cache";
-			$filename_v6 = "{$g['conf_path']}/dyndns_{$dyndns['interface']}{$dyndns['type']}" . escapeshellarg($dyndns['host']) . "{$dyndns['id']}_v6.cache";
 			if (file_exists($filename)) {
 				$ipaddr = dyndnsCheckIP($dyndns['interface']);
 				$cached_ip_s = explode(":", file_get_contents($filename));
@@ -149,16 +147,6 @@ include("head.inc");
 				else 
 					echo "<font color='green'>";
 				echo htmlspecialchars($cached_ip);
-				echo "</font>";
-			} else if (file_exists($filename_v6)) {
-				$ipv6addr = get_interface_ipv6($dyndns['interface']);
-				$cached_ipv6_s = explode("|", file_get_contents($filename_v6));
-				$cached_ipv6 = $cached_ipv6_s[0];
-				if ($ipv6addr <> $cached_ipv6) 
-					echo "<font color='red'>";
-				else 
-					echo "<font color='green'>";
-				echo htmlspecialchars($cached_ipv6);
 				echo "</font>";
 			} else {
 				echo "N/A";
