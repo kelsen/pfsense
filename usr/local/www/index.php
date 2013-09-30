@@ -689,7 +689,7 @@ pfSense_handle_custom_code("/usr/local/pkg/dashboard/pre_dashboard");
 					?>
 				</h4>
 			<!--	</div>-->
-				<div align="right" style="float:right;padding:7px">
+				<div id="tools" align="right" style="float:right;padding:7px">
 					<div id="<?php echo $widgetname;?>-configure" onclick='return configureWidget("<?php echo $widgetname;?>")' style="display:none; cursor:pointer" ><i class="icon-wrench"></i></div>
 					<div id="<?php echo $widgetname;?>-open" onclick='return showWidget("<?php echo $widgetname;?>",true)' style="display:<?php echo $showWidget;?>; cursor:pointer" ><i class="icon-chevron-down"></i></div>
 					<div id="<?php echo $widgetname;?>-min" onclick='return minimizeWidget("<?php echo $widgetname;?>",true)' style="display:<?php echo $mindiv;?>; cursor:pointer" ><i class="icon-chevron-up"></i></div>

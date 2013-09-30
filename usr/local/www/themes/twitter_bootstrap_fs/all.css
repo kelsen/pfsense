@@ -10,6 +10,13 @@ html, body, td, th, input, select {
 #bootstrap-table {
 	margin-top: 14px;
 }
+#tools {
+	display: inline-block;
+	margin-right: 5px;
+	color: #fff;
+	font-size: 14px;
+	text-decoration: none;
+}
 .nowrap { white-space: nowrap; }
 
 .addgatewaybox {
