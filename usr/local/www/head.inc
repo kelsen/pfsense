@@ -10,10 +10,11 @@ $pagetitle = gentitle( $pgtitle );
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" style="overflow: hidden">
 <head>
 	<title><?php echo($config['system']['hostname'] . "." . $config['system']['domain'] . " - " . $pagetitle); ?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
 	<link rel="apple-touch-icon" href="/themes/<?php echo $g['theme']; ?>/apple-touch-icon.png"/>
 		<?php 
 		if (file_exists("{$g['www_path']}/themes/{$g['theme']}/table.css")):
@@ -29,6 +30,13 @@ $pagetitle = gentitle( $pgtitle );
         <?php else: ?>
         	<link type="text/css" rel="stylesheet" href="/themes/<?php echo $g['theme']; ?>/all.css" media="all" />
         <?php endif; ?>
+		<link rel="stylesheet" type="text/css" href="/themes/<?php echo $g['theme']; ?>/assets/bootstrap/css/bootstrap.min.css" />
+   		<link rel="stylesheet" type="text/css" href="/themes/<?php echo $g['theme']; ?>/assets/bootstrap/css/bootstrap-responsive.min.css" />
+   		<!-- 	<link rel="stylesheet" type="text/css" href="/metrolab/assets/bootstrap/css/bootstrap-fileupload.css" /> -->
+   		<link rel="stylesheet" type="text/css" href="/themes/<?php echo $g['theme']; ?>/assets/font-awesome/css/font-awesome.css" />
+   		<link rel="stylesheet" type="text/css" href="/themes/<?php echo $g['theme']; ?>/css/style.css" />
+   		<link rel="stylesheet" type="text/css" href="/themes/<?php echo $g['theme']; ?>/css/style-responsive.css" />
+   		<link rel="stylesheet" type="text/css" href="/themes/<?php echo $g['theme']; ?>/css/style-default.css" id="style_color" />
 		<link rel="stylesheet" type="text/css" href="/niftycssCode.css" />
 		<link rel="stylesheet" type="text/css" href="/niftycssprintCode.css" media="print" />
 		<link rel="stylesheet" type="text/css" href="/themes/<?=$g['theme']?>/new_tab_menu.css" media="all" />
