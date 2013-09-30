@@ -61,7 +61,6 @@ $pconfig['srctrack'] = $config['system']['srctrack'];
 $pconfig['gw_switch_default'] = isset($config['system']['gw_switch_default']);
 $pconfig['preferoldsa_enable'] = isset($config['ipsec']['preferoldsa']);
 $pconfig['racoondebug_enable'] = isset($config['ipsec']['racoondebug']);
-$pconfig['failoverforcereload'] = isset($config['ipsec']['failoverforcereload']);
 $pconfig['maxmss_enable'] = isset($config['system']['maxmss_enable']);
 $pconfig['maxmss'] = $config['system']['maxmss'];
 $pconfig['powerd_enable'] = isset($config['system']['powerd_enable']);
@@ -159,11 +158,6 @@ if ($_POST) {
 			$config['ipsec']['preferoldsa'] = true;
 		elseif (isset($config['ipsec']['preferoldsa']))
 			unset($config['ipsec']['preferoldsa']);
-
-		if($_POST['failoverforcereload'] == "yes")
-			$config['ipsec']['failoverforcereload'] = true;
-		elseif (isset($config['ipsec']['failoverforcereload']))
-			unset($config['ipsec']['failoverforcereload']);
 
 		$need_racoon_restart = false;
 		if($_POST['racoondebug_enable'] == "yes") {
@@ -333,7 +327,7 @@ function tmpvar_checked(obj) {
 							<tr>
 								<td width="22%" valign="top" class="vncell"><?=gettext("Proxy URL"); ?></td>
 								<td width="78%" class="vtable">
-									<input name="proxyurl" id="proxyurl" value="<?php if ($pconfig['proxyurl'] <> "") echo $pconfig['proxyurl']; ?>" class="formfld unknown" />
+									<input name="proxyurl" id="proxyurl" value="<?php if ($pconfig['proxyurl'] <> "") echo $pconfig['proxyurl']; ?>" class="formfld unknown" type="text" />
 									<br />
 									<?php printf(gettext("Proxy url for allowing %s to use this proxy to connect outside."),$g['product']); ?>
 								</td>
@@ -341,7 +335,7 @@ function tmpvar_checked(obj) {
 							<tr>
 								<td width="22%" valign="top" class="vncell"><?=gettext("Proxy Port"); ?></td>
 								<td width="78%" class="vtable">
-									<input name="proxyport" id="proxyport" value="<?php if ($pconfig['proxyport'] <> "") echo $pconfig['proxyport']; ?>" class="formfld unknown" />
+									<input name="proxyport" id="proxyport" value="<?php if ($pconfig['proxyport'] <> "") echo $pconfig['proxyport']; ?>" class="formfld unknown" type="text" />
 									<br />
 									<?php printf(gettext("Proxy port to use when %s connects to the proxy URL configured above. Default is 8080 for http protocol or 443 for ssl."),$g['product']); ?>
 								</td>
@@ -349,7 +343,7 @@ function tmpvar_checked(obj) {
 							<tr>
 								<td width="22%" valign="top" class="vncell"><?=gettext("Proxy Username"); ?></td>
 								<td width="78%" class="vtable">
-									<input name="proxyuser" id="proxyuser" value="<?php if ($pconfig['proxyuser'] <> "") echo $pconfig['proxyuser']; ?>" class="formfld unknown" />
+									<input name="proxyuser" id="proxyuser" value="<?php if ($pconfig['proxyuser'] <> "") echo $pconfig['proxyuser']; ?>" class="formfld unknown" type="text" />
 									<br />
 									<?php printf(gettext("Proxy username for allowing %s to use this proxy to connect outside"),$g['product']); ?>
 								</td>
@@ -433,8 +427,8 @@ function tmpvar_checked(obj) {
 									"the system appears idle and increasing it when the system is busy.  It " .
 									"offers a good balance between a small performance loss for greatly " .
 									"increased power savings.  Hiadaptive mode is alike adaptive mode, but " .
-									"tuned for systems where performance and interactivity are more important " .
-									"than power consumption.  It raises frequency faster, drops slower and " .
+									"tuned for systems where performance and interactivity are more important" .
+									"than power consumption.  It rises frequency faster, drops slower and" .
 									"keeps twice lower CPU load."); ?>
 								</td>
 							</tr>
@@ -519,18 +513,6 @@ function tmpvar_checked(obj) {
 								</td>
 							</tr>
 							<tr>
-								<td width="22%" valign="top" class="vncell"><?=gettext("IPsec Reload on Failover"); ?></td>
-								<td width="78%" class="vtable">
-									<input name="failoverforcereload" type="checkbox" id="failoverforcereload" value="yes" <?php if ($pconfig['failoverforcereload']) echo "checked=\"checked\""; ?> />
-									<strong><?=gettext("Force IPsec Reload on Failover"); ?></strong>
-									<br />
-									<?=gettext("In some circumstances using a gateway group as the interface for " .
-									"an IPsec tunnel does not function properly, and IPsec must be forcefully reloaded " .
-									"when a failover occurs. Because this will disrupt all IPsec tunnels, this behavior" .
-									" is disabled by default. Check this box to force IPsec to fully reload on failover."); ?>
-								</td>
-							</tr>
-							<tr>
 								<td width="22%" valign="top" class="vncell"><?=gettext("Maximum MSS"); ?></td>
 								<td width="78%" class="vtable">
 									<input name="maxmss_enable" type="checkbox" id="maxmss_enable" value="yes" <?php if ($pconfig['maxmss_enable'] == true) echo "checked=\"checked\""; ?> onclick="maxmss_checked(this)" />
@@ -564,11 +546,12 @@ function tmpvar_checked(obj) {
 								<td colspan="2" valign="top" class="listtopic"><?=gettext("Gateway Monitoring"); ?></td>
 							</tr>
 							<tr>
-								<td width="22%" valign="top" class="vncell"><?=gettext("State Killing on Gateway Failure"); ?></td>
+								<td width="22%" valign="top" class="vncell"><?=gettext("States"); ?></td>
 								<td width="78%" class="vtable">
 									<input name="kill_states" type="checkbox" id="kill_states" value="yes" <?php if ($pconfig['kill_states']) echo "checked=\"checked\""; ?> />
 									<br />
-									<?=gettext("The monitoring process will flush states for a gateway that goes down if this box is not checked. Check this box to disable this behavior."); ?>
+									<?=gettext("By default the monitoring process will flush states for a gateway that goes down. ".
+									"This option overrides that behavior by not clearing states for existing connections."); ?>
 								</td>
 							</tr>
 							<tr>
