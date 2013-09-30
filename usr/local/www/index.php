@@ -67,6 +67,11 @@ if ($_REQUEST['act'] == 'alias_info_popup' && !preg_match("/\D/",$_REQUEST['alia
 if($g['disablecrashreporter'] != true) {
 	// Check to see if we have a crash report
 	$x = 0;
+	if(file_exists("/tmp/PHP_errors.log")) {
+		$total = `/usr/bin/grep -vi warning /tmp/PHP_errors.log | /usr/bin/wc -l | /usr/bin/awk '{ print $1 }'`;
+		if($total > 0)
+			$x++;
+	}
 	$crash = glob("/var/crash/*");
 	$skip_files = array(".", "..", "minfree", "");
 	if(is_array($crash)) {
@@ -159,9 +164,8 @@ if (!is_array($config['widgets'])) {
 	<title>{$g['product_name']}.localdomain - {$g['product_name']} first time setup</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<link rel="stylesheet" type="text/css" href="/niftycssprintCode.css" media="print" />
-	<script type="text/javascript">var theme = "{$g['theme']}"</script>
-	<script type="text/javascript" src="/themes/{$g['theme']}/loader.js"></script>
-
+	<script type="text/javascript">var theme = "nervecenter"</script>
+	<script type="text/javascript" src="/themes/nervecenter/loader.js"></script>
 EOF;
 
 		echo "<body link=\"#0000CC\" vlink=\"#0000CC\" alink=\"#0000CC\">\n";
@@ -170,6 +174,7 @@ EOF;
 			echo "<link type=\"text/css\" rel=\"stylesheet\" href=\"/themes/{$g['theme']}/wizard.css\" media=\"all\" />\n";
 		else
 			echo "<link type=\"text/css\" rel=\"stylesheet\" href=\"/themes/{$g['theme']}/all.css\" media=\"all\" />";
+			
 
 		echo "<form>\n";
 		echo "<center>\n";
@@ -462,7 +467,7 @@ include("head.inc");
 
 ?>
 
-<body link="#0000CC" vlink="#0000CC" alink="#0000CC">
+<body link="#0000CC" vlink="#0000CC" alink="#0000CC" class="fixed-top">
 
 <script type="text/javascript">
 //<![CDATA[
@@ -653,8 +658,9 @@ pfSense_handle_custom_code("/usr/local/pkg/dashboard/pre_dashboard");
 		<div style="clear:both;"></div>
 		<div  id="<?php echo $widgetname;?>-container" class="widgetdiv" style="display:<?php echo $divdisplay; ?>;">
 			<input type="hidden" value="<?php echo $inputdisplay;?>" id="<?php echo $widgetname;?>-container-input" name="<?php echo $widgetname;?>-container-input" />
-			<div id="<?php echo $widgetname;?>-topic" class="widgetheader" style="cursor:move">
-				<div style="float:left;">
+			<div id="<?php echo $widgetname;?>-topic" class="widget-title" style="cursor:move">
+				<h4><i class="icon-reorder"></i> 			
+<!--<div style="float:left;">-->
 					<?php
 
 					$widgettitle = $widgetname . "_title";
@@ -681,12 +687,13 @@ pfSense_handle_custom_code("/usr/local/pkg/dashboard/pre_dashboard");
 						<?php }
 					}
 					?>
-				</div>
-				<div align="right" style="float:right;">
-					<div id="<?php echo $widgetname;?>-configure" onclick='return configureWidget("<?php echo $widgetname;?>")' style="display:none; cursor:pointer" ><img src="./themes/<?= $g['theme']; ?>/images/icons/icon_configure.gif" alt="configure" /></div>
-					<div id="<?php echo $widgetname;?>-open" onclick='return showWidget("<?php echo $widgetname;?>",true)' style="display:<?php echo $showWidget;?>; cursor:pointer" ><img src="./themes/<?= $g['theme']; ?>/images/icons/icon_open.gif" alt="open" /></div>
-					<div id="<?php echo $widgetname;?>-min" onclick='return minimizeWidget("<?php echo $widgetname;?>",true)' style="display:<?php echo $mindiv;?>; cursor:pointer" ><img src="./themes/<?= $g['theme']; ?>/images/icons/icon_minus.gif" alt="minimize" /></div>
-					<div id="<?php echo $widgetname;?>-close" onclick='return closeWidget("<?php echo $widgetname;?>",true)' style="display:inline; cursor:pointer" ><img src="./themes/<?= $g['theme']; ?>/images/icons/icon_close.gif" alt="close" /></div>
+				</h4>
+			<!--	</div>-->
+				<div align="right" style="float:right;padding:7px">
+					<div id="<?php echo $widgetname;?>-configure" onclick='return configureWidget("<?php echo $widgetname;?>")' style="display:none; cursor:pointer" ><i class="icon-wrench"></i></div>
+					<div id="<?php echo $widgetname;?>-open" onclick='return showWidget("<?php echo $widgetname;?>",true)' style="display:<?php echo $showWidget;?>; cursor:pointer" ><i class="icon-chevron-down"></i></div>
+					<div id="<?php echo $widgetname;?>-min" onclick='return minimizeWidget("<?php echo $widgetname;?>",true)' style="display:<?php echo $mindiv;?>; cursor:pointer" ><i class="icon-chevron-up"></i></div>
+					<div id="<?php echo $widgetname;?>-close" onclick='return closeWidget("<?php echo $widgetname;?>",true)' style="display:inline; cursor:pointer" ><i class="icon-remove"></i></div>
 				</div>
 				<div style="clear:both;"></div>
 			</div>
@@ -721,8 +728,8 @@ pfSense_handle_custom_code("/usr/local/pkg/dashboard/pre_dashboard");
 //<![CDATA[
 	jQuery(document).ready(function(in_event)
 	{
-			jQuery('#col1').sortable({connectWith: '#col2', dropOnEmpty: true, handle: '.widgetheader', change: showSave});
-			jQuery('#col2').sortable({connectWith: '#col1', dropOnEmpty: true, handle: '.widgetheader', change: showSave});
+			jQuery('#col1').sortable({connectWith: '#col2', dropOnEmpty: true, handle: '.widget-title', change: showSave});
+			jQuery('#col2').sortable({connectWith: '#col1', dropOnEmpty: true, handle: '.widget-title', change: showSave});
 
 	<?php if (!$config['widgets']  && $pconfig['sequence'] != ""){ ?>
 			hideAllWidgets();
@@ -731,6 +738,7 @@ pfSense_handle_custom_code("/usr/local/pkg/dashboard/pre_dashboard");
 	});
 //]]>
 </script>
+
 <?php
 	//build list of javascript include files
 	$jsincludefiles = array();
