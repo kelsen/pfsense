@@ -265,7 +265,7 @@ $have_cookies = isset($_COOKIE["cookie_test"]);
 		<div class="login-wrap">
 			<div class="lock-header">
         		<!-- BEGIN LOGO -->
-        		<a class="center" id="logo" href="index.html">
+        		<a class="center" id="logo" href="index.php">
             		<img class="center" alt="logo" src="/themes/<?= $g['theme'] ?>/img/logo.png">
         		</a>
         		<!-- END LOGO -->
