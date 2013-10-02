@@ -75,9 +75,9 @@ function updateCPU(x) {
 	if(jQuery('#cpumeter'))
 		jQuery("#cpumeter").html(x + '%');
 	if(jQuery('#cpuwidtha'))
-		jQuery("#cpuwidtha").css('width',x + 'px');
+		jQuery("#cpuwidtha").css('width',x + '%');
 	if(jQuery('#cpuwidthb'))
-		jQuery("#cpuwidthb").css('width',(100 - x) + 'px');
+		jQuery("#cpuwidthb").css('width',(100 - x) + '%');
 	/* Load CPU Graph widget if enabled */
 	if(widgetActive('cpu_graphs')) {
 		GraphValue(graph[0], x);
