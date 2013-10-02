@@ -260,7 +260,7 @@ $curcfg = $config['system']['firmware'];
 			<td width="75%" class="listr">
 				<?php $swapusage = swap_usage(); ?>
 			<div class="progress" style="width: 50%">
-                        <div class="bar bar-danger" style="height:15px; width:<?= $swapUsage; ?>%;"></div>
+                        <div class="bar bar-danger" style="height:15px; width:<?= $swapusage; ?>%;"></div>
 			</div>
 				<span id="swapusagemeter"><?= $swapusage.'%'; ?></span> of <?= sprintf("%.0f", `/usr/sbin/swapinfo -m | /usr/bin/grep -v Device | /usr/bin/awk '{ print $2;}'`) ?> MB
 			</td>
@@ -271,7 +271,7 @@ $curcfg = $config['system']['firmware'];
 			<td width="75%" class="listr">
 				<?php $diskusage = disk_usage(); ?>
 			<div class="progress" style="width: 50%">
-                        <div class="bar bar-danger" style="height:15px; width:<?= $diskUsage; ?>%;"></div>
+                        <div class="bar bar-danger" style="height:15px; width:<?= $diskusage; ?>%;"></div>
 			</div>
 				<span id="diskusagemeter"><?= $diskusage.'%'; ?></span> of <?= `/bin/df -h / | /usr/bin/grep -v 'Size' | /usr/bin/awk '{ print $2 }'` ?>
 			</td>
