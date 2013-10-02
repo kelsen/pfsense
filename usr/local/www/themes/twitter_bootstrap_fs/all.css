@@ -4,6 +4,9 @@ html, body, td, th, input, select {
 	font-size: 0.9em;
 
 }
+#niftyOutter {
+	padding-top: 10px;
+}
 #paramsForm {
 	margin: 0 0 0;
 }
