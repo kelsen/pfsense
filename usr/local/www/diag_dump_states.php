@@ -156,7 +156,7 @@ include("head.inc");
 					<th class="listhdrr" width="10%"><?=gettext("Proto");?></th>
 					<th class="listhdrr" width="65"><?=gettext("Source -> Router -> Destination");?></th>
 					<th class="listhdr" width="24%"><?=gettext("State");?></th>
-					<th class="list sort_ignore" width="1%"></th>
+					<th class="list sort_ignore" width="3%"></th>
 				</tr>
 				</thead>
 				<tbody>
