@@ -976,10 +976,10 @@ form legend {
     border: 1px solid #404040;
 }
 
-.widget-title {
+/*.widget-title {
     background: #404040;
     height: 36px;
-}
+}*/
 
 .widget.green {
     border: 1px solid #74B749;
@@ -1870,14 +1870,14 @@ ul.item-list .pull-right span {
 
 /*progress bar*/
 .progress {
-    height: 10px;
+   /* height: 10px;*/
     border-radius: 0;
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
 }
 
 .progress {
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
     overflow: hidden;
     background-color: #ededed !important;
     background-image: -moz-linear-gradient(top, #ededed, #ededed);

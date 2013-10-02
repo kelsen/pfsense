@@ -10,6 +10,10 @@ a, a:hover {
 ul.faq-list li a:hover, ul.faq-list li a.active{
     background: #79b82e;
 }
+.widget-title {
+	background: #79b82e;
+	height: 36px;
+}
 
 #header.navbar-inverse .navbar-inner {
     background-color: #79b82e;
