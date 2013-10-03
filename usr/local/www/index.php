@@ -471,7 +471,7 @@ include("head.inc");
 
 <script type="text/javascript">
 //<![CDATA[
-columns = ['col1','col2'];
+columns = ['col1','col2','col3','col4'];
 //]]>
 </script>
 
@@ -559,7 +559,7 @@ pfSense_handle_custom_code("/usr/local/pkg/dashboard/pre_dashboard");
 	$printed = false;
 	$firstprint = false;
 	?>
-	<div id="col1" style="float:left;width:49%;padding-bottom:40px">
+	<div id="col1" style="float:left;width:49%;padding-bottom:40px" class="ui-sortable">
 	<?php
 
 	foreach($widgetlist as $widget) {
@@ -642,18 +642,36 @@ pfSense_handle_custom_code("/usr/local/pkg/dashboard/pre_dashboard");
 				$printed = true;
 				?>
 				</div>
-				<div id="col2" style="float:right;width:49%;padding-bottom:40px">
+				<div id="col2" style="float:right;width:49%;padding-bottom:40px" class="ui-sortable">
 				<?php
 			}
-		}
+			}
 		else if ($widgetcounter >= $halftotal && $printed == false){
 			$printed = true;
 			?>
 			</div>
-			<div id="col2" style="float:right;width:49%;padding-bottom:40px">
+			<div id="col2" style="float:right;width:49%;padding-bottom:40px" class="ui-sortable">
 			<?php
-		}
-
+		  }
+                else {
+      if ($config['widgets'] && $pconfig['sequence'] != "") {
+        if ($colpos[$widgetcounter] == "col2" && $printed == false)
+        {
+          $printed = true;
+          ?>
+          </div>
+          <div id="col2" style="float:right;width:49%;padding-bottom:40px" 
+class="ui-sortable">
+          <?php
+        }
+        else { ?>
+          <script language="javascript" type="text/javascript">
+          var colpos = "<?=$colpos[$widgetcounter]?>";
+          createColumn(colpos);          
+          </script>
+        <?php }
+      }    
+    } 
 		?>
 		<div style="clear:both;"></div>
 		<div  id="<?php echo $widgetname;?>-container" class="widgetdiv" style="display:<?php echo $divdisplay; ?>;">
@@ -730,6 +748,7 @@ pfSense_handle_custom_code("/usr/local/pkg/dashboard/pre_dashboard");
 	{
 			jQuery('#col1').sortable({connectWith: '#col2', dropOnEmpty: true, handle: '.widget-title', change: showSave});
 			jQuery('#col2').sortable({connectWith: '#col1', dropOnEmpty: true, handle: '.widget-title', change: showSave});
+			jQuery('.ui-sortable').sortable({connectWith: '.ui-sortable', dropOnEmpty: true, handle: '.widget-title', change: showSave});
 
 	<?php if (!$config['widgets']  && $pconfig['sequence'] != ""){ ?>
 			hideAllWidgets();
