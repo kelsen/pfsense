@@ -159,7 +159,7 @@ include("head.inc");
              <table class="tabcont" width="100%" border="0" cellpadding="0" cellspacing="0" summary="main area">
                 <tr>
                   <td width="15%" class="listhdrr"><?=gettext("Name"); ?></td>
-                  <td width="15%" class="listhdrr"><?=gettext("Interface"); ?></td>
+                  <td width="10%" class="listhdrr"><?=gettext("Interface"); ?></td>
                   <td width="20%" class="listhdrr"><?=gettext("Gateway"); ?></td>
                   <td width="20%" class="listhdrr"><?=gettext("Monitor IP"); ?></td>
                   <td width="30%" class="listhdr"><?=gettext("Description"); ?></td>
