@@ -471,7 +471,7 @@ include("head.inc");
 
 <script type="text/javascript">
 //<![CDATA[
-columns = ['col1','col2','col3','col4'];
+columns = ['col1','col2','col3','col4', 'col5','col6','col7','col8','col9','col10'];
 //]]>
 </script>
 
@@ -524,11 +524,11 @@ pfSense_handle_custom_code("/usr/local/pkg/dashboard/pre_dashboard");
 
 <div id="welcomecontainer" style="display:none">
 		<div id="welcome-container">
-			<div style="float:left;width:80%;padding: 2px">
+			<div style="float:left;width:100%;padding: 2px">
 				<h1><?=gettext("Welcome to the Dashboard page"); ?>!</h1>
 			</div>
-			<div onclick="domTT_close(this);showAllWidgets();" style="float:right;width:8%; cursor:pointer;padding: 5px;" >
-				<img src="./themes/<?= $g['theme']; ?>/images/icons/icon_close.gif" alt="close" />
+			<div onclick="domTT_close(this);showAllWidgets();" style="width:87%; position: absolute; cursor:pointer; padding: 10px;" >
+				<img src="./themes/<?= $g['theme']; ?>/images/icons/icon_close.gif" alt="close" style="float:right" />
 			</div>
 			<div style="clear:both;"></div>
 			<p>
@@ -550,7 +550,7 @@ pfSense_handle_custom_code("/usr/local/pkg/dashboard/pre_dashboard");
 &nbsp;&nbsp;&nbsp;
 		<input id="submit" name="submit" type="submit" style="display:none" onclick="return updatePref();" class="formbtn" value="<?=gettext("Save Settings");?>" />
 </form>
-<div id="niftyOutter">
+<div id="niftyOutter" class"fakeClass">
 	<?php
 	$totalwidgets = count($widgetfiles);
 	$halftotal = $totalwidgets / 2 - 2;
@@ -636,44 +636,46 @@ pfSense_handle_custom_code("/usr/local/pkg/dashboard/pre_dashboard");
 			}
 		}
 
-		if ($config['widgets'] && $pconfig['sequence'] != ""){
-			if ($colpos[$widgetcounter] == "col2" && $printed == false)
-			{
-				$printed = true;
-				?>
-				</div>
-				<div id="col2" style="float:right;width:49%;padding-bottom:40px" class="ui-sortable">
-				<?php
-			}
-			}
+			 if( substr($g['theme'], -3) != "_fs") {
+	                       if ($config['widgets'] && $pconfig['sequence'] != ""){
+                               if ($colpos[$widgetcounter] == "col2" && $printed == false)
+                               {
+                                       $printed = true;
+                                       ?>
+                                       </div>
+                                       <div id="col2" style="float:right;width:49%;padding-bottom:40px" class="ui-sortable">
+                                       <?php
+                               }
+                       }
 		else if ($widgetcounter >= $halftotal && $printed == false){
-			$printed = true;
-			?>
-			</div>
-			<div id="col2" style="float:right;width:49%;padding-bottom:40px" class="ui-sortable">
-			<?php
-		  }
-                else {
-      if ($config['widgets'] && $pconfig['sequence'] != "") {
-        if ($colpos[$widgetcounter] == "col2" && $printed == false)
-        {
-          $printed = true;
-          ?>
-          </div>
-          <div id="col2" style="float:right;width:49%;padding-bottom:40px" 
-class="ui-sortable">
-          <?php
-        }
-        else { ?>
-          <script language="javascript" type="text/javascript">
-          var colpos = "<?=$colpos[$widgetcounter]?>";
-          createColumn(colpos);          
-          </script>
-        <?php }
-      }    
-    } 
-		?>
-		<div style="clear:both;"></div>
+                                $printed = true;
+                                ?>
+                                </div>
+                                <div id="col2" style="float:right;width:49%;padding-bottom:40px" class="ui-sortable">
+                                <?php
+                        }
+                }
+		else {
+                        if ($config['widgets'] && $pconfig['sequence'] != "") {
+                                if ($colpos[$widgetcounter] == "col2" && $printed == false)
+                                {
+                                        $printed = true;
+                                        ?>
+                                        </div>
+                                        <div id="col2" style="float:right;width:49%;padding-bottom:40px" class="ui-sortable">
+                                        <?php
+                                }
+                                else { ?>
+                                        <script language="javascript" type="text/javascript">
+                                        var colpos = "<?=$colpos[$widgetcounter]?>";
+                                        createColumn(colpos);                                   
+                                        </script>
+                                <?php }
+                        }
+                }
+
+                ?>
+
 		<div  id="<?php echo $widgetname;?>-container" class="widgetdiv" style="display:<?php echo $divdisplay; ?>;">
 			<input type="hidden" value="<?php echo $inputdisplay;?>" id="<?php echo $widgetname;?>-container-input" name="<?php echo $widgetname;?>-container-input" />
 			<div id="<?php echo $widgetname;?>-topic" class="widget-title" style="cursor:move">
@@ -745,9 +747,6 @@ class="ui-sortable">
 <script type="text/javascript">
 //<![CDATA[
 	jQuery(document).ready(function(in_event)
-	{
-			jQuery('#col1').sortable({connectWith: '#col2', dropOnEmpty: true, handle: '.widget-title', change: showSave});
-			jQuery('#col2').sortable({connectWith: '#col1', dropOnEmpty: true, handle: '.widget-title', change: showSave});
 			jQuery('.ui-sortable').sortable({connectWith: '.ui-sortable', dropOnEmpty: true, handle: '.widget-title', change: showSave});
 
 	<?php if (!$config['widgets']  && $pconfig['sequence'] != ""){ ?>
