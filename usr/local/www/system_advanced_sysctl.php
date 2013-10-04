@@ -170,7 +170,7 @@ include("head.inc");
 						<tr>
 							<td width="20%" class="listhdrr"><?=gettext("Tunable Name"); ?></td>
 							<td width="60%" class="listhdrr"><?=gettext("Description"); ?></td>
-							<td width="20%" class="listhdrr"><?=gettext("Value"); ?></td>
+							<td width="17%" class="listhdrr"><?=gettext("Value"); ?></td>
 						</tr>
 						<?php $i = 0; foreach ($config['sysctl']['item'] as $tunable): ?>
 						<tr>
