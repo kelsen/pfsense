@@ -152,7 +152,7 @@ include("head.inc");
 							<td colspan="2" valign="middle" align="center" class="list" nowrap><input type="submit" name="diff" value="<?=gettext("Diff"); ?>"></td>
 							<td width="22%" class="listhdrr"><?=gettext("Date");?></td>
 							<td width="8%" class="listhdrr"><?=gettext("Version");?></td>
-							<td width="70%" class="listhdrr"><?=gettext("Configuration Change");?></td>
+							<td width="62%" class="listhdrr"><?=gettext("Configuration Change");?></td>
 						</tr>
 						<tr valign="top">
 							<td valign="middle" class="list" nowrap></td>
