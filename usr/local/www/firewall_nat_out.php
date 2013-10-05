@@ -354,15 +354,14 @@ include("head.inc");
 				<tr><td>&nbsp;</td></tr>
                 <tr id="frheader">
                   <td width="3%" class="list">&nbsp;</td>
-                  <td width="3%" class="list">&nbsp;</td>
                   <td width="10%" class="listhdrr"><?=gettext("Interface");?></td>
-                  <td width="15%" class="listhdrr"><?=gettext("Source");?></td>
-                  <td width="10%" class="listhdrr"><?=gettext("Source Port");?></td>
-                  <td width="15%" class="listhdrr"><?=gettext("Destination");?></td>
+                  <td width="10%" class="listhdrr"><?=gettext("Source");?></td>
+                  <td width="7%" class="listhdrr"><?=gettext("Source Port");?></td>
+                  <td width="10%" class="listhdrr"><?=gettext("Destination");?></td>
                   <td width="10%" class="listhdrr"><?=gettext("Destination Port");?></td>
-                  <td width="15%" class="listhdrr"><?=gettext("NAT Address");?></td>
-                  <td width="10%" class="listhdrr"><?=gettext("NAT Port");?></td>
-		  <td width="10%" class="listhdrr"><?=gettext("Static Port");?></td>
+                  <td width="10%" class="listhdrr"><?=gettext("NAT Address");?></td>
+                  <td width="7%" class="listhdrr"><?=gettext("NAT Port");?></td>
+		  <td width="7%" class="listhdrr"><?=gettext("Static Port");?></td>
                   <td width="25%" class="listhdr"><?=gettext("Description");?></td>
                   <td width="5%" class="list">
                     <table border="0" cellspacing="0" cellpadding="1" summary="add">
