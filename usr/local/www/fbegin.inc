@@ -9,7 +9,6 @@ require_once("shortcuts.inc");
 require_once("service-utils.inc");
 /* $Id$ */
 
-
 /* Determine automated help URL. Should output the page name and
    parameters separately */
 $uri_split = "";
@@ -286,7 +285,13 @@ if(! $g['disablehelpmenu']) {
                           <a class="dropdown-toggle" data-toggle="dropdown">
 
  	                    <i class="icon-bell-alt"></i>
-                               <span class="badge badge-warning"></span>
+                               <span class="badge badge-warning">
+			<?php 
+				$notices = get_notices();
+				$msg= sprintf("%1$02d",count($notices));
+				echo substr($msg,1,2); 
+			?>
+			</span>
                            </a>
                            <ul class="dropdown-menu extended notification">
                                <li>
