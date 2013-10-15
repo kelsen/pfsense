@@ -7,7 +7,6 @@ require_once("globals.inc");
 require_once("functions.inc");
 require_once("shortcuts.inc");
 require_once("service-utils.inc");
-
 /* $Id$ */
 
 
@@ -289,178 +288,170 @@ if(! $g['disablehelpmenu']) {
  	                    <i class="icon-bell-alt"></i>
                                <span class="badge badge-warning"></span>
                            </a>
-                           <ul class="dropdown-menu extended notification>">
+                           <ul class="dropdown-menu extended notification">
                                <li>
 
-                                   <p><?php $found_notices = are_notices_pending();?></p>
-                               </li>
-                            <li>
-                                   <a href="#">
-                                       <span class="label label-important"><i class="icon-bolt"></i></span>
-                                       <?php
-											if($need_alert_display == true) {
-                                       echo $display_text;
-                                       }
-                                       ?>
-                                   </a>
-                               </li>
-									</ul>
-                       </li>
-                       <!-- END NOTIFICATION DROPDOWN -->
+			<?php echo get_menu_messages(); ?>
+		       </li>
+			</ul>
+	       </li>
+	       <!-- END NOTIFICATION DROPDOWN -->
 
-               </div>
-               <!-- END  NOTIFICATION -->
-               <div class="top-nav ">
-                   <ul class="nav pull-right top-menu">
-                     <!-- BEGIN USER LOGIN DROPDOWN -->
-                       <li class="dropdown">
-                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-			       <i class="icon-user"></i>
-                               <span class="username">
-				<?php
-                                echo $config['system']['hostname'] . "." . $config['system']['domain']; 
-				?>
-				</span>
-                               <b class="caret"></b>
-                           </a>
-                           <ul class="dropdown-menu extended logout">
-                               <li><a href="../system_usermanager.php"><i class="icon-cog"></i> Settings</a></li>
-                               <li><a href="../index.php?logout"><i class="icon-key"></i> Log Out</a></li>
-                           </ul>
-                       </li>
-                       <!-- END USER LOGIN DROPDOWN -->
-                   </ul>
-                   <!-- END TOP NAVIGATION MENU -->
-               </div>
-           </div>
        </div>
-       <!-- END TOP NAVIGATION BAR -->
+       <!-- END  NOTIFICATION -->
+       <div class="top-nav ">
+	   <ul class="nav pull-right top-menu">
+	     <!-- BEGIN USER LOGIN DROPDOWN -->
+	       <li class="dropdown">
+		   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		       <i class="icon-user"></i>
+		       <span class="username">
+			<?php
+			echo $config['system']['hostname'] . "." . $config['system']['domain']; 
+			?>
+			</span>
+		       <b class="caret"></b>
+		   </a>
+		   <ul class="dropdown-menu extended logout">
+		       <li><a href="../system_usermanager.php"><i class="icon-cog"></i> Settings</a></li>
+		       <li><a href="../index.php?logout"><i class="icon-key"></i> Log Out</a></li>
+		   </ul>
+	       </li>
+	       <!-- END USER LOGIN DROPDOWN -->
+	   </ul>
+	   <!-- END TOP NAVIGATION MENU -->
+       </div>
    </div>
-
-<!-- BEGIN SIDEBAR -->
-      <div class="sidebar-scroll">
-        <div id="sidebar" class="nav-collapse collapse">
-
-         <!-- BEGIN SIDEBAR MENU -->
-          <ul class="sidebar-menu">
-              <li class="sub-menu active">
-                  <a class="" href="index.php">
-                      <i class="icon-dashboard"></i>
-                      <span>Dashboard</span>
-                  </a>
-              </li>
-              <li class="sub-menu">
-                  <a href="javascript:;" class="">
-                      <i class="icon-book"></i>
-                      <span>System</span>
-                      <span class="arrow"></span>
-                  </a>
-                  <ul class="sub">
-                  <?php
-			output_menu($system_menu);
-		  ?>
-              </ul>
-              </li>
-              <li class="sub-menu">
-                  <a href="javascript:;" class="">
-                      <i class="icon-cogs"></i>
-                      <span>Interfaces</span>
-                      <span class="arrow"></span>
-                  </a>
-                  <ul class="sub">
-                  <?php
-			output_menu($interfaces_menu);
-	 	  ?>
-                  </ul>
-              </li>
-              <li class="sub-menu">
-                  <a href="javascript:;" class="">
-                      <i class="icon-tasks"></i>
-                      <span>Firewall</span>
-                      <span class="arrow"></span>
-                  </a>
-                  <ul class="sub">
-                  <?php
-			output_menu($firewall_menu);
-	 	  ?>
-                  </ul>
-              </li>
-              <li class="sub-menu">
-                  <a href="javascript:;" class="">
-                      <i class="icon-th"></i>
-                      <span>Services</span>
-                      <span class="arrow"></span>
-                  </a>
-                  <ul class="sub">
-                  <?php
-			output_menu($services_menu);
-		  ?>
-                  </ul>
-              </li>
+</div>
+<!-- END TOP NAVIGATION BAR -->
+</div>
 
 
-              <li class="sub-menu">
-                  <a href="javascript:;" class="">
-                      <i class="icon-fire"></i>
-                      <span>Status</span>
-                      <span class="arrow"></span>
-                  </a>
-                  <ul class="sub">
-                  <?php
-			output_menu($status_menu);
-		  ?>
-                  </ul>
-              </li>
-              <li class="sub-menu">
-                  <a href="javascript:;" class="">
-                      <i class="icon-file-alt"></i>
-                      <span>Diagnostics</span>
-                      <span class="arrow"></span>
-                  </a>
-                  <ul class="sub">
-                  <?php
-			output_menu($diagnostics_menu);
-	 	 ?>
-                  </ul>
-              </li>
-              <li class="sub-menu">
-                  <a href="javascript:;" class="">
-                      <i class="icon-question"></i>
-                      <span>Help</span>
-                      <span class="arrow"></span>
-                  </a>
-                  <ul class="sub">
-		  <?php
-			output_menu($help_menu);
-	  	  ?>
-                  </ul>
-              </li>
-              <li>
-                  <a class="" href="index.php?logout">
-                    <i class="icon-user"></i>
-                    <span>Login Page</span>
-                  </a>
-              </li>
-          </ul>
-         <!-- END SIDEBAR MENU -->
-         </div>
-      </div>
-	<!-- <div id="header">
-		<div id="header-left"><a href="/index.php" id="status-link"><img src="/themes/<?= $g['theme']; ?>/images/transparent.gif" border="0" alt="transparent" /></a></div>
-		<div id="header-right">
-			<div class="container">
-				<div class="left">webConfigurator</div>
-				<div class="right" id="menu_messages">
+<!-- <div id="header">
+	<div id="header-left"><a href="/index.php" id="status-link"><img src="/themes/<?= $g['theme']; ?>/images/transparent.gif" border="0" alt="transparent" /></a></div>
+	<div id="header-right">
+		<div class="container">
+			<div class="left">webConfigurator</div>
+			<div class="right" id="menu_messages">
 <?php
-				echo get_menu_messages();
+			echo get_menu_messages();
 ?>
-	</div>
-			</div>
+</div>
 		</div>
-	</div> <!-- Header DIV -->
-	<div id="content">
-		<!-- BEGIN RIGHT CONTAINER -->
-		<div id="right">
+	</div>
+</div> <!-- Header DIV -->
+<div id="content">
+<!-- BEGIN SIDEBAR -->
+<div class="sidebar-scroll">
+<div id="sidebar" class="nav-collapse collapse">
+
+ <!-- BEGIN SIDEBAR MENU -->
+  <ul class="sidebar-menu">
+      <li class="sub-menu active">
+	  <a class="" href="index.php">
+	      <i class="icon-dashboard"></i>
+	      <span>Dashboard</span>
+	  </a>
+      </li>
+      <li class="sub-menu">
+	  <a href="javascript:;" class="">
+	      <i class="icon-book"></i>
+	      <span>System</span>
+	      <span class="arrow"></span>
+	  </a>
+	  <ul class="sub">
+	  <?php
+		output_menu($system_menu);
+	  ?>
+      </ul>
+      </li>
+      <li class="sub-menu">
+	  <a href="javascript:;" class="">
+	      <i class="icon-cogs"></i>
+	      <span>Interfaces</span>
+	      <span class="arrow"></span>
+	  </a>
+	  <ul class="sub">
+	  <?php
+		output_menu($interfaces_menu);
+	  ?>
+	  </ul>
+      </li>
+      <li class="sub-menu">
+	  <a href="javascript:;" class="">
+	      <i class="icon-tasks"></i>
+	      <span>Firewall</span>
+	      <span class="arrow"></span>
+	  </a>
+	  <ul class="sub">
+	  <?php
+		output_menu($firewall_menu);
+	  ?>
+	  </ul>
+      </li>
+      <li class="sub-menu">
+	  <a href="javascript:;" class="">
+	      <i class="icon-th"></i>
+	      <span>Services</span>
+	      <span class="arrow"></span>
+	  </a>
+	  <ul class="sub">
+	  <?php
+		output_menu($services_menu);
+	  ?>
+	  </ul>
+      </li>
+
+
+      <li class="sub-menu">
+	  <a href="javascript:;" class="">
+	      <i class="icon-fire"></i>
+	      <span>Status</span>
+	      <span class="arrow"></span>
+	  </a>
+	  <ul class="sub">
+	  <?php
+		output_menu($status_menu);
+	  ?>
+	  </ul>
+      </li>
+      <li class="sub-menu">
+	  <a href="javascript:;" class="">
+	      <i class="icon-file-alt"></i>
+	      <span>Diagnostics</span>
+	      <span class="arrow"></span>
+	  </a>
+	  <ul class="sub">
+	  <?php
+		output_menu($diagnostics_menu);
+	 ?>
+	  </ul>
+      </li>
+      <li class="sub-menu">
+	  <a href="javascript:;" class="">
+	      <i class="icon-question"></i>
+	      <span>Help</span>
+	      <span class="arrow"></span>
+	  </a>
+	  <ul class="sub">
+	  <?php
+		output_menu($help_menu);
+	  ?>
+	  </ul>
+      </li>
+      <li>
+	  <a class="" href="index.php?logout">
+	    <i class="icon-user"></i>
+	    <span>Login Page</span>
+	  </a>
+      </li>
+  </ul>
+ <!-- END SIDEBAR MENU -->
+ </div>
+</div>
+
+	<!-- BEGIN RIGHT CONTAINER -->
+	<div id="right">
 
 <?php
 
@@ -468,7 +459,7 @@ echo "\t<script type=\"text/javascript\" src=\"javascript/domTT/domLib.js\"></sc
 echo "\t<script type=\"text/javascript\" src=\"javascript/domTT/domTT.js\"></script>\n";
 echo "\t<script type=\"text/javascript\" src=\"javascript/domTT/behaviour.js\"></script>\n";
 echo "\t<script type=\"text/javascript\" src=\"javascript/domTT/fadomatic.js\"></script>\n";
-	/* display a top alert bar if need be */
+/* display a top alert bar if need be */
 	$need_alert_display = false;
 	$found_notices = are_notices_pending();
 	if($found_notices == true) {
