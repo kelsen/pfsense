@@ -277,13 +277,9 @@ if(! $g['disablehelpmenu']) {
                    <!-- BEGIN NOTIFICATION -->
                    <ul class="nav top-menu">
                        <!-- BEGIN SETTINGS -->
-                       
-                       <!-- END INBOX DROPDOWN -->
-                     
                        <!-- BEGIN NOTIFICATION DROPDOWN --> 
                        <li class="dropdown" id="header_notification_bar">
                           <a class="dropdown-toggle" data-toggle="dropdown">
-
  	                    <i class="icon-bell-alt"></i>
                                <span class="badge badge-warning">
 			<?php 
@@ -294,10 +290,9 @@ if(! $g['disablehelpmenu']) {
 			</span>
                            </a>
                            <ul class="dropdown-menu extended notification">
-                               <li>
-
+                               	<li>
 			<?php echo get_menu_messages(); ?>
-		       </li>
+		       		</li>
 			</ul>
 	       </li>
 	       <!-- END NOTIFICATION DROPDOWN -->
@@ -330,28 +325,12 @@ if(! $g['disablehelpmenu']) {
 </div>
 <!-- END TOP NAVIGATION BAR -->
 </div>
-
-
-<!-- <div id="header">
-	<div id="header-left"><a href="/index.php" id="status-link"><img src="/themes/<?= $g['theme']; ?>/images/transparent.gif" border="0" alt="transparent" /></a></div>
-	<div id="header-right">
-		<div class="container">
-			<div class="left">webConfigurator</div>
-			<div class="right" id="menu_messages">
-<?php
-			echo get_menu_messages();
-?>
-</div>
-		</div>
-	</div>
-</div> <!-- Header DIV -->
-<div id="content">
 <!-- BEGIN SIDEBAR -->
 <div class="sidebar-scroll">
 <div id="sidebar" class="nav-collapse collapse">
 
  <!-- BEGIN SIDEBAR MENU -->
-  <ul class="sidebar-menu">
+  <ul class="sidebar-menu" id="sidebar-menu">
       <li class="sub-menu active">
 	  <a class="" href="/index.php">
 	      <i class="icon-dashboard"></i>
@@ -368,7 +347,7 @@ if(! $g['disablehelpmenu']) {
 	  <?php
 		output_menu($system_menu);
 	  ?>
-      </ul>
+      	</ul>
       </li>
       <li class="sub-menu">
 	  <a href="javascript:;" class="">
@@ -454,9 +433,9 @@ if(! $g['disablehelpmenu']) {
  <!-- END SIDEBAR MENU -->
  </div>
 </div>
-
+<div id="content">
 	<!-- BEGIN RIGHT CONTAINER -->
-	<div id="right">
+<div id="right">
 
 <?php
 
@@ -532,62 +511,93 @@ echo get_shortcut_log_link($shortcut_section, true);
 <div class="widget-body" id="widgetbody" style="display: none;">
 <div class="row-fluid">
                <div class="span12">
-                   <!-- BEGIN THEME CUSTOMIZER
-                   <div id="theme-change" class="hidden-phone">
-                       <i class="icon-cogs"></i>
-                        <span class="settings">
-                            <span class="text">Theme Color:</span>
-                            <span class="colors">
-                                <span class="color-default" data-style="default"></span>
-                                <span class="color-green" data-style="green"></span>
-                                <span class="color-gray" data-style="gray"></span>
-                                <span class="color-purple" data-style="purple"></span>
-                                <span class="color-red" data-style="red"></span>
-                            </span>
-                        </span>
-                   </div>
-                   <!-- END THEME CUSTOMIZER-->
-                  <!-- BEGIN PAGE TITLE & BREADCRUMB>
-                   <!--<h3 class="page-title"><a href="<?= htmlentities($_SERVER['REQUEST_URI']) ?>"><?=genhtmltitle($pgtitle);?></a>
-                   </h3>-->
+                  <!-- BEGIN INDEX & COLUMNMODIFIER -->
                    <ul class="breadcrumb">
-                       <!--<li>
-                           <a href="<?= htmlentities($_SERVER['REQUEST_URI']) ?>"><?=genhtmltitle($pgtitle);?></a>
-                       </li>-->
 
 <div id="widgetcontainer" style="display:none">
-		<div id="content1"><h1>Available Widgets</h1><p>						<span style="cursor: pointer;" onclick="return addWidget(&quot;captive_portal_status&quot;)">
-						<u>Captive Portal Status</u></span><br>						<span style="cursor: pointer;" onclick="return addWidget(&quot;carp_status&quot;)">
-						<u>Carp Status</u></span><br>
-												<span style="cursor: pointer;" onclick="return addWidget(&quot;dyn_dns_status&quot;)">
-						<u>Dyn DNS Status</u></span><br>
-												<span style="cursor: pointer;" onclick="return addWidget(&quot;gateways&quot;)">
-						<u>Gateways</u></span><br>
-												<span style="cursor: pointer;" onclick="return addWidget(&quot;gmirror_status&quot;)">
-						<u>Gmirror Status</u></span><br>						<span style="cursor: pointer;" onclick="return addWidget(&quot;installed_packages&quot;)">
-						<u>Installed Packages</u></span><br>
-												<span style="cursor: pointer;" onclick="return addWidget(&quot;interface_statistics&quot;)">
-						<u>Interface Statistics</u></span><br>
-												<span style="cursor: pointer;" onclick="return addWidget(&quot;interfaces&quot;)">
-						<u>Interfaces</u></span><br>
-												<span style="cursor: pointer;" onclick="return addWidget(&quot;ipsec&quot;)">
-						<u>Ipsec</u></span><br>						<span style="cursor: pointer;" onclick="return addWidget(&quot;load_balancer_status&quot;)">
-						<u>Load Balancer Status</u></span><br>						<span style="cursor: pointer;" onclick="return addWidget(&quot;log&quot;)">
-						<u>Firewall Logs</u></span><br>
-												<span style="cursor: pointer;" onclick="return addWidget(&quot;openvpn&quot;)">
-						<u>OpenVPN</u></span><br>
-												<span style="cursor: pointer;" onclick="return addWidget(&quot;picture&quot;)">
-						<u>Picture</u></span><br>						<span style="cursor: pointer;" onclick="return addWidget(&quot;rss&quot;)">
-						<u>Rss</u></span><br>						<span style="cursor: pointer;" onclick="return addWidget(&quot;services_status&quot;)">
-						<u>Services Status</u></span><br>
-												<span style="cursor: pointer;" onclick="return addWidget(&quot;smart_status&quot;)">
-						<u>SMART Status</u></span><br>
-												<span style="cursor: pointer;" onclick="return addWidget(&quot;system_information&quot;)">
-						<u>System Information</u></span><br>						<span style="cursor: pointer;" onclick="return addWidget(&quot;thermal_sensors&quot;)">
-						<u>Thermal Sensors</u></span><br>						<span style="cursor: pointer;" onclick="return addWidget(&quot;traffic_graphs&quot;)">
-						<u>Traffic Graphs</u></span><br>						<span style="cursor: pointer;" onclick="return addWidget(&quot;wake_on_lan&quot;)">
-						<u>Wake On Lan</u></span><br>
-								</p>
+		<div id="content1"><h1>Available Widgets</h1>
+		<p>					
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;captive_portal_status&quot;)">
+				<u>Captive Portal Status</u>
+			</span>
+			<br>						
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;carp_status&quot;)">
+				<u>Carp Status</u>
+			</span>
+			<br>
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;dyn_dns_status&quot;)">
+				<u>Dyn DNS Status</u>
+			</span>
+			<br>
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;gateways&quot;)">
+				<u>Gateways</u>
+			</span>
+			<br>
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;gmirror_status&quot;)">
+				<u>Gmirror Status</u>
+			</span>
+			<br>						
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;installed_packages&quot;)">
+				<u>Installed Packages</u>
+			</span>
+			<br>
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;interface_statistics&quot;)">
+				<u>Interface Statistics</u>
+			</span>
+			<br>
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;interfaces&quot;)">
+				<u>Interfaces</u>
+			</span>
+			<br>
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;ipsec&quot;)">
+				<u>Ipsec</u>
+			</span>
+			<br>						
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;load_balancer_status&quot;)">
+				<u>Load Balancer Status</u>
+			</span>
+			<br>						
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;log&quot;)">
+				<u>Firewall Logs</u>
+			</span>
+			<br>
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;openvpn&quot;)">
+				<u>OpenVPN</u>
+			</span>
+			<br>
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;picture&quot;)">
+				<u>Picture</u>
+			</span>
+			<br>						
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;rss&quot;)">
+				<u>Rss</u>
+			</span>
+			<br>			
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;services_status&quot;)">
+				<u>Services Status</u>
+			</span>
+			<br>
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;smart_status&quot;)">
+				<u>SMART Status</u>
+			</span>
+			<br>
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;system_information&quot;)">
+				<u>System Information</u>
+			</span>
+			<br>		
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;thermal_sensors&quot;)">
+				<u>Thermal Sensors</u>
+			</span>
+			<br>			
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;traffic_graphs&quot;)">
+				<u>Traffic Graphs</u>
+			</span>
+			<br>
+			<span style="cursor: pointer;" onclick="return addWidget(&quot;wake_on_lan&quot;)">
+				<u>Wake On Lan</u>
+			</span>
+			<br>
+		</p>
 	</div>
 </div>
 
@@ -608,7 +618,7 @@ echo get_shortcut_log_link($shortcut_section, true);
 	</div>
 </div>
 
-<form action="index.php" method="post">
+<form action="index.php" method="post" accept-charset="utf-8">
 <input type="hidden" value="" name="sequence" id="sequence" autocomplete="off">
 <img src="./themes/twitter_bootstrap_fs/images/icons/icon_plus.gif" alt="Click here to add widgets" style="cursor: pointer;" onmouseup="domTT_activate(this, event, 'content', document.getElementById('content1'), 'type', 'velcro', 'delay', 0, 'fade', 'both', 'fadeMax', 100, 'styleClass', 'niceTitle');">
 
@@ -622,12 +632,10 @@ echo get_shortcut_log_link($shortcut_section, true);
 
                    </ul>
                    <!-- END PAGE TITLE & BREADCRUMB-->
-
                </div>
-
             </div>
-</div>
-</div>
+	</div>
+     </div>
 
 <?php
 /* if upgrade in progress, alert user */

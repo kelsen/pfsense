@@ -41,6 +41,7 @@ $pagetitle = gentitle( $pgtitle );
 		<link rel="stylesheet" type="text/css" href="/niftycssprintCode.css" media="print" />
 		<link rel="stylesheet" type="text/css" href="/themes/<?=$g['theme']?>/new_tab_menu.css" media="all" />
 		<script type="text/javascript" src="/javascript/niftyjsCode.js"></script>
+		<script type="text/javascript" src="/javascript/jquery/jquery-1.8.3.min.js"></script>
 		<script type="text/javascript" src="/javascript/jquery.js"></script>
 		<script type="text/javascript" src="/javascript/jquery/jquery-ui.custom.min.js"></script>
 		<script type="text/javascript">
@@ -50,7 +51,16 @@ $pagetitle = gentitle( $pgtitle );
 			jQuery.noConflict();
 		//]]>
 		</script>
-		
+		<script type="text/javascript">
+		$(document).ready(function(){
+		$("#sidebar-menu a").click(function( e ){
+			e.preventDefault();
+			var href = $( this ).attr('href');
+			$( "#content" ).load( href +" #right" );
+		});
+			});
+		</script>	
+
 		<script type="text/javascript" src="/javascript/sorttable.js"></script>
 		<script type="text/javascript" src="/javascript/ticker.js"></script>
 		<style type="text/css" id="antiClickjack">
