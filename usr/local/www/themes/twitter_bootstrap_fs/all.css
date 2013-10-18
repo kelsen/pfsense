@@ -3,10 +3,10 @@ html, body, td, th, input, select {
 	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
 	font-size: 0.9em;
 
-}
+}/*
 #niftyOutter {
 	padding-top: 10px;
-}
+}*/
 #paramsForm {
 	margin: 0 0 0;
 }

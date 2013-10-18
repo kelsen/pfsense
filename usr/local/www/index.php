@@ -383,6 +383,9 @@ function showSave(){
 	selectIntLink = "submit";
 	textlink = d.getElementById(selectIntLink);
 	textlink.style.display = "inline";
+	selectwidgetbody = "widgetbody";
+	widgetbody = d.getElementById(selectwidgetbody);
+	widgetbody.style.display = "block";
 }
 
 function updatePref(){
@@ -471,7 +474,7 @@ include("head.inc");
 
 <script type="text/javascript">
 //<![CDATA[
-columns = ['col1','col2','col3','col4', 'col5','col6','col7','col8','col9','col10'];
+Columns = ['col1','col2','col3','col4', 'col5','col6','col7','col8','col9','col10'];
 //]]>
 </script>
 
@@ -487,69 +490,6 @@ if ($savemsg)
 pfSense_handle_custom_code("/usr/local/pkg/dashboard/pre_dashboard");
 
 ?>
-<div id="widgetcontainer" style="display:none">
-		<div id="content1"><h1><?=gettext("Available Widgets"); ?></h1><p><?php
-			$widgetfiles_add = $widgetfiles;
-			sort($widgetfiles_add);
-			foreach($widgetfiles_add as $widget) {
-				if(!stristr($widget, "widget.php"))
-					continue;
-
-				$periodpos = strpos($widget, ".");
-				$widgetname = substr($widget, 0, $periodpos);
-				$nicename = $widgetname;
-				$nicename = str_replace("_", " ", $nicename);
-				//make the title look nice
-				$nicename = ucwords($nicename);
-
-				$widgettitle = $widgetname . "_title";
-				$widgettitlelink = $widgetname . "_title_link";
-					if ($$widgettitle != "")
-					{
-						//echo widget title
-						?>
-						<span style="cursor: pointer;" onclick='return addWidget("<?php echo $widgetname; ?>")'>
-						<u><?php echo $$widgettitle; ?></u></span><br />
-						<?php
-					}
-					else {?>
-						<span style="cursor: pointer;" onclick='return addWidget("<?php echo $widgetname; ?>")'>
-						<u><?php echo $nicename; ?></u></span><br /><?php
-					}
-			}
-		?>
-		</p>
-	</div>
-</div>
-
-<div id="welcomecontainer" style="display:none">
-		<div id="welcome-container">
-			<div style="float:left;width:100%;padding: 2px">
-				<h1><?=gettext("Welcome to the Dashboard page"); ?>!</h1>
-			</div>
-			<div onclick="domTT_close(this);showAllWidgets();" style="width:87%; position: absolute; cursor:pointer; padding: 10px;" >
-				<img src="./themes/<?= $g['theme']; ?>/images/icons/icon_close.gif" alt="close" style="float:right" />
-			</div>
-			<div style="clear:both;"></div>
-			<p>
-			<?=gettext("This page allows you to customize the information you want to be displayed!");?><br/>
-			<?=gettext("To get started click the");?> <img src="./themes/<?= $g['theme']; ?>/images/icons/icon_plus.gif" alt="plus" /> <?=gettext("icon to add widgets.");?><br/>
-			<br/>
-			<?=gettext("You can move any widget around by clicking and dragging the title.");?>
-			</p>
-	</div>
-</div>
-
-<form action="index.php" method="post">
-<input type="hidden" value="" name="sequence" id="sequence" />
-<img src="./themes/<?= $g['theme']; ?>/images/icons/icon_plus.gif" alt="<?=gettext("Click here to add widgets"); ?>" style="cursor: pointer;" onmouseup="domTT_activate(this, event, 'content', document.getElementById('content1'), 'type', 'velcro', 'delay', 0, 'fade', 'both', 'fadeMax', 100, 'styleClass', 'niceTitle');" />
-
-<img src="./themes/<?= $g['theme']; ?>/images/icons/icon_info_pkg.gif" alt="<?=gettext("Click here for help"); ?>" style="cursor: help;" onmouseup="hideAllWidgets();domTT_activate(this, event, 'content', document.getElementById('welcome-container'), 'type', 'sticky', 'closeLink', '','delay', 0, 'fade', 'both', 'fadeMax', 100, 'styleClass', 'niceTitle');" />
-
-
-&nbsp;&nbsp;&nbsp;
-		<input id="submit" name="submit" type="submit" style="display:none" onclick="return updatePref();" class="formbtn" value="<?=gettext("Save Settings");?>" />
-</form>
 <div id="niftyOutter" class"fakeClass">
 	<?php
 	$totalwidgets = count($widgetfiles);
@@ -680,7 +620,6 @@ pfSense_handle_custom_code("/usr/local/pkg/dashboard/pre_dashboard");
 			<input type="hidden" value="<?php echo $inputdisplay;?>" id="<?php echo $widgetname;?>-container-input" name="<?php echo $widgetname;?>-container-input" />
 			<div id="<?php echo $widgetname;?>-topic" class="widget-title" style="cursor:move">
 				<h4><i class="icon-reorder"></i> 			
-<!--<div style="float:left;">-->
 					<?php
 
 					$widgettitle = $widgetname . "_title";
@@ -708,7 +647,6 @@ pfSense_handle_custom_code("/usr/local/pkg/dashboard/pre_dashboard");
 					}
 					?>
 				</h4>
-			<!--	</div>-->
 				<div id="tools" align="right" style="float:right;padding:7px">
 					<div id="<?php echo $widgetname;?>-configure" onclick='return configureWidget("<?php echo $widgetname;?>")' style="display:none; cursor:pointer" ><i class="icon-wrench"></i></div>
 					<div id="<?php echo $widgetname;?>-open" onclick='return showWidget("<?php echo $widgetname;?>",true)' style="display:<?php echo $showWidget;?>; cursor:pointer" ><i class="icon-chevron-down"></i></div>
@@ -741,7 +679,6 @@ pfSense_handle_custom_code("/usr/local/pkg/dashboard/pre_dashboard");
 		</div>
 	<div style="clear:both;"></div>
 </div>
-
 <?php include("fend.inc"); ?>
 
 <script type="text/javascript">
